@@ -1,10 +1,6 @@
-#include<iostream>
-#include<sstream>
-#include<vector>
+#include "math-expr-evaluator.h"
 
-using namespace std;
-
-double add_sub(vector<double> &nums,vector<char> &ops)
+double add_sub(std::vector<double> &nums,std::vector<char> &ops)
 {
   // evaluate + and - opeartors
   double sum = nums[0];
@@ -20,7 +16,7 @@ double add_sub(vector<double> &nums,vector<char> &ops)
   return sum;
 }
 
-double mul_div(vector<double> &v,vector<char> &ops)
+double mul_div(std::vector<double> &v,std::vector<char> &ops)
 {
   // only evaluate * and / operators
   double num1,num2;
@@ -40,10 +36,10 @@ double mul_div(vector<double> &v,vector<char> &ops)
   return add_sub(v,ops);
 }
 
-double eval(stringstream &ss)
+double eval(std::stringstream &ss)
 {
-	vector<double> v; // v holds all numbers
-  vector<char> ops; // ops holds all the operators
+	std::vector<double> v; // v holds all numbers
+  std::vector<char> ops; // ops holds all the operators
   double num;
   char next;
   bool unary = true;
@@ -82,17 +78,4 @@ double eval(stringstream &ss)
   }
 
 	return mul_div(v,ops);
-}
-
-
-// driver code
-int main()
-{
-	string s;
-	getline(cin,s);
-	stringstream ss(s);
-	double num = eval(ss);
-	cout << "Result is: " << num << endl;
-
-	return 0;
 }
